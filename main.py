@@ -1,5 +1,5 @@
-import datetime
 import os
+import random
 import time
 
 
@@ -51,10 +51,6 @@ class Main:
                   + " | Contact Number: " + current.accounts.contact_number)
             current = current.next
             count += 1
-
-    def main(self):
-        folder_path = open(Variables.databaseFolderPath, "r")
-        folder_path.mkdir()
 
 
 class Account:
