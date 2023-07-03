@@ -1,4 +1,5 @@
 import os
+import random
 import datetime
 
 
@@ -36,10 +37,11 @@ class Variables:
 
 
 class Main:
-    def __init__(self):
-        self.L = []
-        self.doctors = []
-        self.globalUsername = ""
+
+    global L
+    global doctors
+    doctors = []
+    global globalUsername
 
     def display(self):
         count = 0
@@ -281,3 +283,24 @@ def login_Account(self, username, password):
                 return False
 
     return False
+
+def checkPatientSlotFile(DTIME):
+    filePath = Variables.schedulesFolderPath + DTIME
+    try:
+        with open(filePath, "r") as file:
+            slotNum = file.readline()
+            return int(slotNum)
+    except IOError as e:
+        print("Error opening/reading to file: ", e)
+    return 0
+
+def savePatientSlotFile(DTIME, numPatient):
+    filePath = Variables.schedulesFolderPath + DTIME
+    try:
+        with open(filePath, "w") as file:
+            file.write(str(numPatient))
+    except IOError as e:
+        print("Error opening/writing to file:", e)
+
+
+
